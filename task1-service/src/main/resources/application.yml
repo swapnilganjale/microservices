@@ -1,0 +1,47 @@
+server:
+  port: 8090
+  use-forward-headers: false
+
+ 
+spring:
+ application:
+    name: task1-service
+ datasource:
+  url: jdbc:postgresql://localhost:5432/microservice
+  username: postgres
+  password: root      
+
+ jpa:
+   hibernate:
+    ddl-auto: update 
+   database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+   properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+   
+     
+eureka:
+  instance:
+    hostname: localhost
+    port: 8761
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+
+# Ribbon config
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+auth-server:
+    url: http://localhost:8070          
+            
+ 
